@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Workspace Terminal</title>
+    <style>
+        /* Modern Dark Theme Design */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121214;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header-section {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .panic-warning {
+            display: inline-block;
+            background-color: #1a1a1e;
+            border: 1px solid #2d2d34;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
+        .panic-key {
+            background-color: #2d2d34;
+            color: #38bdf8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        /* Clean Responsive Grid Layout for Multiple Games */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .game-card {
+            background-color: #1a1a1e;
+            border: 1px solid #2d2d34;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .game-title {
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            color: #f8fafc;
+            text-align: left;
+            font-weight: 600;
+        }
+        .game-frame-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Keeps a perfect 16:9 widescreen ratio */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #000000;
+        }
+        .game-frame-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+
+    <!-- AUTOMATIC TAB CLOAKER -->
+    <script>
+        const fakeTitle = "Google Docs";
+        const fakeIcon = "https://gstatic.com";
+        const realTitle = document.title;
+        let realIcon = "";
+        
+        const iconLink = document.querySelector("link[rel*='icon']");
+        if (iconLink) { realIcon = iconLink.href; }
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                document.title = fakeTitle;
+                changeFavicon(fakeIcon);
+            } else {
+                document.title = realTitle;
+                if (realIcon) { changeFavicon(realIcon); } 
+                else { const existingIcon = document.querySelector("link[rel*='icon']"); if (existingIcon) existingIcon.remove(); }
+            }
+        });
+
+        function changeFavicon(src) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.type = 'image/x-icon';
+                link.rel = 'shortcut icon';
+                document.getElementsByTagName('head').appendChild(link);
+            }
+            link.href = src;
+        }
+    </script>
+
+    <!-- INSTANT PANIC BUTTON -->
+    <script>
+        window.addEventListener("keydown", (event) => {
+            // Instantly triggers when pressing the bracket key [
+            if (event.key === "[") {
+                event.preventDefault();
+                window.location.replace("https://google.com");
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>Research Workspace Framework</h1>
+        <p class="panic-warning">
+            ⚠️ <b>Emergency Bypass:</b> Click the dark background empty space, then press <span class="panic-key">[</span> to hide this site instantly.
+        </p>
+    </div>
+
+    <!-- MAIN GAME HUB -->
+    <div class="games-grid">
+
+        <!-- GAME CARD 1: Slither.io -->
+        <div class="game-card">
+            <div class="game-title">Simulation Asset #01 (Slither)</div>
+            <div class="game-frame-wrapper">
+                <iframe src="https://crazygames.com" allow="gamepad *;"></iframe>
+            </div>
+        </div>
+
+        <!-- GAME CARD 2: Moto X3M -->
+        <div class="game-card">
+            <div class="game-title">Simulation Asset #02 (Physics Engine)</div>
+            <div class="game-frame-wrapper">
+                <iframe src="https://crazygames.com" allow="gamepad *;"></iframe>
+            </div>
+        </div>
+
+        <!-- GAME CARD 3: Bullet Force -->
+        <div class="game-card">
+            <div class="game-title">Simulation Asset #03 (Tactical Framework)</div>
+            <div class="game-frame-wrapper">
+                <iframe src="https://crazygames.com" allow="gamepad *;"></iframe>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
